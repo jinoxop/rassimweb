@@ -12,26 +12,29 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
 background:#000;
-overflow:hidden;
-color:white;
+color:#fff;
+overflow-x:hidden;
 }
 
-/* Background */
+/* BACKGROUND */
+
 .bg{
 position:fixed;
 width:100%;
 height:100%;
+top:0;
+left:0;
 background:
-radial-gradient(circle at 70% 20%,rgba(0,140,255,.6),transparent 25%),
-radial-gradient(circle at 30% 80%,rgba(0,140,255,.5),transparent 25%),
+radial-gradient(circle at 70% 20%,rgba(0,119,255,.45),transparent 25%),
+radial-gradient(circle at 20% 70%,rgba(0,119,255,.35),transparent 30%),
 #000;
-filter:blur(0px);
-z-index:-2;
+z-index:-3;
 }
 
 canvas{
@@ -40,53 +43,63 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-1;
+z-index:-2;
 }
 
 /* LOGIN */
 
-#login{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
+#loginPage{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#000;
+z-index:9999;
+}
+
+.login-box{
 width:380px;
 padding:40px;
 background:rgba(255,255,255,.05);
 backdrop-filter:blur(25px);
-border:1px solid rgba(0,140,255,.5);
+border:1px solid rgba(0,140,255,.4);
 border-radius:30px;
 box-shadow:0 0 50px rgba(0,140,255,.4);
 text-align:center;
 }
 
-#login h1{
+.login-box h1{
+color:#4db8ff;
 font-size:40px;
 margin-bottom:25px;
-color:#4db8ff;
 }
 
-#login input{
+.login-box input{
 width:100%;
 padding:15px;
-background:#111;
-border:1px solid #0af;
+border:none;
+outline:none;
+background:#0a0a0a;
+border:1px solid #008cff;
 border-radius:15px;
 color:white;
 font-size:16px;
-outline:none;
 }
 
-#login button{
+.login-box button{
 width:100%;
-padding:15px;
 margin-top:15px;
-background:linear-gradient(90deg,#008cff,#00bfff);
+padding:15px;
+background:linear-gradient(90deg,#0077ff,#00bbff);
 border:none;
 border-radius:15px;
-color:white;
-font-size:17px;
+font-size:16px;
 font-weight:bold;
+color:white;
 cursor:pointer;
 }
 
@@ -94,143 +107,362 @@ cursor:pointer;
 
 #site{
 display:none;
-padding:40px;
+}
+
+nav{
+width:90%;
+max-width:1200px;
+margin:25px auto;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(0,140,255,.2);
+backdrop-filter:blur(25px);
+border-radius:50px;
 }
 
 .logo{
+font-size:28px;
+font-weight:700;
+color:#52c1ff;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px;
+}
+
+.hero-content{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:60px;
+max-width:1300px;
+width:100%;
+}
+
+.left{
+max-width:650px;
+}
+
+.badge{
+display:inline-block;
+padding:10px 20px;
+background:rgba(0,140,255,.15);
+border:1px solid #008cff;
+border-radius:30px;
+margin-bottom:25px;
+}
+
+.left h1{
+font-size:85px;
+line-height:90px;
+margin-bottom:20px;
+}
+
+.left p{
+font-size:20px;
+color:#ccc;
+margin-bottom:30px;
+}
+
+.buttons{
+display:flex;
+gap:15px;
+}
+
+.btn1{
+background:#008cff;
+padding:15px 30px;
+border-radius:50px;
+text-decoration:none;
+color:white;
+}
+
+.btn2{
+border:1px solid #008cff;
+padding:15px 30px;
+border-radius:50px;
+text-decoration:none;
+color:white;
+}
+
+.orb{
+width:500px;
+height:500px;
+border-radius:50%;
+background:
+radial-gradient(circle,
+#4cc9ff,
+#006eff,
+transparent);
+filter:blur(20px);
+animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+50%{
+transform:translateY(-25px);
+}
+}
+
+/* PRICING */
+
+.pricing{
+padding:100px 50px;
+}
+
+.title{
 text-align:center;
-font-size:65px;
-font-weight:800;
-color:#6ec6ff;
-text-shadow:0 0 30px #008cff;
-margin-bottom:60px;
+font-size:60px;
+margin-bottom:70px;
 }
 
 .cards{
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+max-width:1300px;
+margin:auto;
 }
 
 .card{
-width:260px;
-padding:30px;
+padding:35px;
 background:rgba(255,255,255,.04);
 backdrop-filter:blur(30px);
-border:1px solid rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.08);
 border-radius:35px;
+text-align:center;
 transition:.4s;
-box-shadow:0 0 30px rgba(0,140,255,.15);
 }
 
 .card:hover{
 transform:translateY(-10px);
-box-shadow:0 0 50px rgba(0,140,255,.6);
-border:1px solid #2fb8ff;
+box-shadow:0 0 40px rgba(0,140,255,.5);
+border-color:#00aaff;
 }
 
 .card h2{
-font-size:30px;
-color:#80d4ff;
-margin-bottom:15px;
+font-size:28px;
+margin-bottom:20px;
+color:#79d2ff;
 }
 
 .price{
-font-size:45px;
-font-weight:700;
-margin-bottom:20px;
+font-size:55px;
+font-weight:bold;
+margin-bottom:25px;
 }
 
-.btn{
-display:block;
-text-align:center;
-padding:14px;
-border-radius:50px;
+.buy{
+display:inline-block;
+padding:14px 35px;
 background:white;
 color:black;
+border-radius:50px;
 text-decoration:none;
 font-weight:bold;
 }
 
+/* DISCORD */
+
 .discord{
-margin-top:60px;
+padding:100px 20px;
 text-align:center;
 }
 
-.discord a{
-font-size:80px;
+.discord i{
+font-size:90px;
 color:#009dff;
-text-shadow:0 0 25px #009dff;
+text-shadow:0 0 30px #009dff;
 }
 
+.discord a{
+display:inline-block;
+margin-top:20px;
+padding:15px 35px;
+background:#009dff;
+color:white;
+text-decoration:none;
+border-radius:50px;
+}
+
+/* MOBILE */
+
 @media(max-width:900px){
-.cards{
+
+.hero-content{
 flex-direction:column;
-align-items:center;
 }
-.logo{
-font-size:45px;
+
+.left h1{
+font-size:55px;
+line-height:60px;
 }
+
+.orb{
+width:300px;
+height:300px;
+}
+
+nav ul{
+display:none;
+}
+
 }
 </style>
 </head>
 <body>
 
 <div class="bg"></div>
-<canvas id="canvas"></canvas>
+<canvas id="particles"></canvas>
 
 <!-- LOGIN -->
 
-<div id="login">
+<div id="loginPage">
+
+<div class="login-box">
+
 <h1>LOGIN WEB</h1>
 
-<input type="password" id="pass" placeholder="Password">
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
 
-<button onclick="login()">ENTER</button>
+<button onclick="login()">
+LOGIN
+</button>
+
+</div>
+
 </div>
 
 <!-- SITE -->
 
 <div id="site">
 
+<nav>
+
 <div class="logo">
 RASSIM STORE
 </div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#discord">Discord</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="left">
+
+<div class="badge">
+Premium Panel Store
+</div>
+
+<h1>
+Elite Panels<br>
+For Everyone
+</h1>
+
+<p>
+Fast delivery, premium access,
+secure system and professional support.
+</p>
+
+<div class="buttons">
+
+<a href="#pricing" class="btn1">
+View Pricing
+</a>
+
+<a href="#discord" class="btn2">
+Discord
+</a>
+
+</div>
+
+</div>
+
+<div class="orb"></div>
+
+</div>
+
+</section>
+
+<section class="pricing" id="pricing">
+
+<h1 class="title">
+Pricing Plans
+</h1>
 
 <div class="cards">
 
 <div class="card">
 <h2>PANEL LIFETIME</h2>
 <div class="price">106 $</div>
-<a class="btn">Choose Plan</a>
+<a class="buy">Buy Now</a>
 </div>
 
 <div class="card">
 <h2>PANEL 90 DAYS</h2>
 <div class="price">106 $</div>
-<a class="btn">Choose Plan</a>
+<a class="buy">Buy Now</a>
 </div>
 
 <div class="card">
 <h2>PANEL 30 DAYS</h2>
 <div class="price">106 $</div>
-<a class="btn">Choose Plan</a>
+<a class="buy">Buy Now</a>
 </div>
 
 <div class="card">
 <h2>PANEL 7 DAYS</h2>
 <div class="price">106 $</div>
-<a class="btn">Choose Plan</a>
+<a class="buy">Buy Now</a>
 </div>
 
 </div>
 
-<div class="discord">
-<a href="https://discord.gg/5B7KD2Y6C" target="_blank">
+</section>
+
+<section class="discord" id="discord">
+
 <i class="fab fa-discord"></i>
+
+<br>
+
+<a
+href="https://discord.gg/5B7KD2Y6C"
+target="_blank">
+Join Discord
 </a>
-</div>
+
+</section>
 
 </div>
 
@@ -238,55 +470,63 @@ RASSIM STORE
 
 function login(){
 
-let p=document.getElementById("pass").value;
+const pass=document.getElementById("password").value;
 
-if(p==="RASSIM 97"){
-document.getElementById("login").style.display="none";
+if(pass==="RASSIM 97"){
+
+document.getElementById("loginPage").style.display="none";
 document.getElementById("site").style.display="block";
+
 }else{
+
 alert("Wrong Password");
+
 }
 
 }
 
 /* PARTICLES */
 
-const canvas=document.getElementById("canvas");
+const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-let particles=[];
+let dots=[];
 
-for(let i=0;i<120;i++){
-particles.push({
+for(let i=0;i<140;i++){
+
+dots.push({
+
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-r:Math.random()*3+1,
-dx:(Math.random()-0.5),
-dy:(Math.random()-0.5)
+r:Math.random()*2+1,
+dx:(Math.random()-.5)*.5,
+dy:(Math.random()-.5)*.5
+
 });
+
 }
 
 function animate(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-particles.forEach(p=>{
+dots.forEach(dot=>{
 
 ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.arc(dot.x,dot.y,dot.r,0,Math.PI*2);
 ctx.fillStyle="#00aaff";
-ctx.shadowBlur=20;
+ctx.shadowBlur=15;
 ctx.shadowColor="#00aaff";
 ctx.fill();
 
-p.x+=p.dx;
-p.y+=p.dy;
+dot.x+=dot.dx;
+dot.y+=dot.dy;
 
-if(p.x<0||p.x>canvas.width)p.dx*=-1;
-if(p.y<0||p.y>canvas.height)p.dy*=-1;
+if(dot.x<0||dot.x>canvas.width)dot.dx*=-1;
+if(dot.y<0||dot.y>canvas.height)dot.dy*=-1;
 
 });
 
@@ -296,10 +536,12 @@ requestAnimationFrame(animate);
 
 animate();
 
-window.onresize=()=>{
+window.addEventListener("resize",()=>{
+
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-};
+
+});
 
 </script>
 
