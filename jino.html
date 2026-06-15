@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASSIM STORE</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#000;
+overflow:hidden;
+color:white;
+}
+
+/* Background */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 70% 20%,rgba(0,140,255,.6),transparent 25%),
+radial-gradient(circle at 30% 80%,rgba(0,140,255,.5),transparent 25%),
+#000;
+filter:blur(0px);
+z-index:-2;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* LOGIN */
+
+#login{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:380px;
+padding:40px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(25px);
+border:1px solid rgba(0,140,255,.5);
+border-radius:30px;
+box-shadow:0 0 50px rgba(0,140,255,.4);
+text-align:center;
+}
+
+#login h1{
+font-size:40px;
+margin-bottom:25px;
+color:#4db8ff;
+}
+
+#login input{
+width:100%;
+padding:15px;
+background:#111;
+border:1px solid #0af;
+border-radius:15px;
+color:white;
+font-size:16px;
+outline:none;
+}
+
+#login button{
+width:100%;
+padding:15px;
+margin-top:15px;
+background:linear-gradient(90deg,#008cff,#00bfff);
+border:none;
+border-radius:15px;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* SITE */
+
+#site{
+display:none;
+padding:40px;
+}
+
+.logo{
+text-align:center;
+font-size:65px;
+font-weight:800;
+color:#6ec6ff;
+text-shadow:0 0 30px #008cff;
+margin-bottom:60px;
+}
+
+.cards{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.card{
+width:260px;
+padding:30px;
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(30px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:35px;
+transition:.4s;
+box-shadow:0 0 30px rgba(0,140,255,.15);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 50px rgba(0,140,255,.6);
+border:1px solid #2fb8ff;
+}
+
+.card h2{
+font-size:30px;
+color:#80d4ff;
+margin-bottom:15px;
+}
+
+.price{
+font-size:45px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.btn{
+display:block;
+text-align:center;
+padding:14px;
+border-radius:50px;
+background:white;
+color:black;
+text-decoration:none;
+font-weight:bold;
+}
+
+.discord{
+margin-top:60px;
+text-align:center;
+}
+
+.discord a{
+font-size:80px;
+color:#009dff;
+text-shadow:0 0 25px #009dff;
+}
+
+@media(max-width:900px){
+.cards{
+flex-direction:column;
+align-items:center;
+}
+.logo{
+font-size:45px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<canvas id="canvas"></canvas>
+
+<!-- LOGIN -->
+
+<div id="login">
+<h1>LOGIN WEB</h1>
+
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">ENTER</button>
+</div>
+
+<!-- SITE -->
+
+<div id="site">
+
+<div class="logo">
+RASSIM STORE
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h2>PANEL LIFETIME</h2>
+<div class="price">106 $</div>
+<a class="btn">Choose Plan</a>
+</div>
+
+<div class="card">
+<h2>PANEL 90 DAYS</h2>
+<div class="price">106 $</div>
+<a class="btn">Choose Plan</a>
+</div>
+
+<div class="card">
+<h2>PANEL 30 DAYS</h2>
+<div class="price">106 $</div>
+<a class="btn">Choose Plan</a>
+</div>
+
+<div class="card">
+<h2>PANEL 7 DAYS</h2>
+<div class="price">106 $</div>
+<a class="btn">Choose Plan</a>
+</div>
+
+</div>
+
+<div class="discord">
+<a href="https://discord.gg/5B7KD2Y6C" target="_blank">
+<i class="fab fa-discord"></i>
+</a>
+</div>
+
+</div>
+
+<script>
+
+function login(){
+
+let p=document.getElementById("pass").value;
+
+if(p==="RASSIM 97"){
+document.getElementById("login").style.display="none";
+document.getElementById("site").style.display="block";
+}else{
+alert("Wrong Password");
+}
+
+}
+
+/* PARTICLES */
+
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#00aaff";
+ctx.shadowBlur=20;
+ctx.shadowColor="#00aaff";
+ctx.fill();
+
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+window.onresize=()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+};
+
+</script>
+
+</body>
+</html>
