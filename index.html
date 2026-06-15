@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
+<!-- Font Awesome (Discord icon) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 *{
     margin:0;
@@ -64,15 +67,26 @@ nav a:hover{
     color:#2563ff;
 }
 
-.contact-btn{
-    background:linear-gradient(90deg,#2563ff,#4f46e5);
-    padding:12px 25px;
+/* DISCORD ICON BUTTON */
+.discord-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:linear-gradient(90deg,#5865F2,#4752C4);
+    padding:12px 20px;
     border-radius:40px;
     text-decoration:none;
     color:white;
-    box-shadow:0 0 25px #2563ff;
+    box-shadow:0 0 25px rgba(88,101,242,.6);
+    transition:.3s;
 }
 
+.discord-btn:hover{
+    transform:scale(1.05);
+}
+
+/* HERO */
 .hero{
     min-height:100vh;
     display:flex;
@@ -115,6 +129,7 @@ nav a:hover{
     filter:drop-shadow(0 0 30px #2563ff);
 }
 
+/* PRICING */
 .pricing{
     padding:100px 8%;
 }
@@ -171,6 +186,7 @@ nav a:hover{
     cursor:pointer;
 }
 
+/* FOOTER */
 footer{
     text-align:center;
     padding:40px;
@@ -209,6 +225,7 @@ footer{
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -218,10 +235,13 @@ footer{
         <a href="#">Home</a>
         <a href="#">Panel</a>
         <a href="#">Pricing</a>
-        <a href="#">Contact</a>
     </nav>
 
-    <a class="contact-btn" href="#">CONTACT US</a>
+    <!-- DISCORD BUTTON بدل Contact -->
+    <a class="discord-btn" href="https://discord.gg/DFv6nNtvm" target="_blank">
+        <i class="fa-brands fa-discord"></i>
+        Discord
+    </a>
 </header>
 
 <section class="hero">
@@ -237,6 +257,7 @@ footer{
         <a class="buy-btn" href="#pricing">BUY PANEL</a>
     </div>
 
+    <!-- IMAGE (يمكن تغييرها بسهولة) -->
     <div class="hero-image">
         <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800"
         alt="">
